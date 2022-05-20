@@ -1,6 +1,6 @@
 """Plotly Dash HTML layout override."""
 
-html_layout = """"
+html_layout = """
 <!DOCTYPE html>
     <html>
         <head>
@@ -14,7 +14,7 @@ html_layout = """"
               <div class="nav-wrapper">
                 <a href="/">
                     <img src="/static/img/logo.png" class="logo" />
-                    <h1>FinViz Visualizations</h1>
+                    <h1>FinVizualizations</h1>
                   </a>
                 <nav>
                 </nav>
