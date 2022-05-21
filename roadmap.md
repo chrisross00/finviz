@@ -24,7 +24,10 @@
 * search for multiple quotes
 * save searches / dashboard for saved searches
 * login/logout/user profiles
-
+* Dash bootstrap components
+* Tooltips 
+* Live quotes etc
+  * idea of context: a sticky or persistent set of divs could be interesting to play with
 
 
 ## Done!
