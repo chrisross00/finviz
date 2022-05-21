@@ -20,6 +20,11 @@
   * >>> df.to_csv('./nameoffile') 
 
 ## Backlog
+* Change the exchange type
+* search for multiple quotes
+* save searches / dashboard for saved searches
+* login/logout/user profiles
+
 
 
 ## Done!
