@@ -55,14 +55,14 @@ def init_dashboard(server):
                 dcc.Graph(id='viz-3', style={'height': '45vh'}, className="card_container three columns"),],
                 className="row flex-display",),
             html.Div([
-                html.Div(children=[html.H3(id='graph-2', children='Market Capitalization')], className="card_container three columns"),
-                html.Div(children=html.H3(id='graph-3', children='PE Ratio'), className="card_container three columns"),
-                html.Div(children=html.H3( id='graph-4', children='Current Ratio'), className="card_container three columns"),], 
+                html.Div(children=[html.H5(id='graph-2', children='Market Capitalization')], className="card_container three columns"),
+                html.Div(children=html.H5(id='graph-3', children='PE Ratio'), className="card_container three columns"),
+                html.Div(children=html.H5( id='graph-4', children='Current Ratio'), className="card_container three columns"),], 
                 className="row flex-display",),
             html.Div([
-                html.Div(children=html.H3( id='graph-5', children='Price vs Enterprise Value'), className="card_container three columns"),
-                html.Div(children=html.H3( id='graph-6', children='Required Growth'), className="card_container three columns"),
-                html.Div(children=html.H3( id='graph-7', children="Graham's Number"), className="card_container three columns"),], 
+                html.Div(children=html.H5( id='graph-5', children='Price vs Enterprise Value'), className="card_container three columns"),
+                html.Div(children=html.H5( id='graph-6', children='Required Growth'), className="card_container three columns"),
+                html.Div(children=html.H5( id='graph-7', children="Graham's Number"), className="card_container three columns"),], 
                 className="row flex-display",),
             html.Br(),
             # 1. Add a figX here 
@@ -147,15 +147,15 @@ def init_dashboard(server):
         formattedDiff = "${:,.2f}".format(dfs.totalCurrentAssets[dfs.totalCurrentAssets.first_valid_index()]*1.5)
         fig2 = html.Div([
             html.Div([
-                html.Div([html.H3(children='Market Capitalization')]),
+                html.Div([html.H5(children='Market Capitalization')]),
                 html.Div(children=html.Span(children=html.Span()),title='Online', 
                     className="dot green" if marketCapCurrentAssetPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H4(f"{formattedMarketCap}"),
-                html.H6('Market Cap should be less than or equal to  ' + f"{formattedCurrentAssetValueMult}*", className='rationale'), 
+                html.H2(f"{formattedMarketCap}"),
+                html.H5('Market Cap should be less than or equal to  ' + f"{formattedCurrentAssetValueMult}*"), 
                 html.Hr(),
-                html.P('*Net Current Asset Value x 1.5, or:  ' + f"{formattedCurrentAssetValue} " + " x 1.5 = " + f"{formattedCurrentAssetValueMult}", className='note')
+                html.H6('*Net Current Asset Value x 1.5, or:  ' + f"{formattedCurrentAssetValue} " + " x 1.5 = " + f"{formattedCurrentAssetValueMult}", className='note')
             ],className='card-content-box'),],
             id='graph-2',
         )
@@ -167,13 +167,13 @@ def init_dashboard(server):
         priceEarningsRatioPass = True if dfs.peRatio[dfs.peRatio.first_valid_index()] <= 15 else False
         fig3 = html.Div([
             html.Div([
-                html.Div([html.H3(children='Price Equity Ratio')]),
+                html.Div([html.H5(children='Price Equity Ratio')]),
                 html.Div(children=html.Span(children=html.Span()),title='Online', 
                     className="dot green" if priceEarningsRatioPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H4(f"{formattedPriceEarningsRatio}"),
-                html.H6('Price-Equity Ratio should be less than or equal to 15', className='rationale')
+                html.H2(f"{formattedPriceEarningsRatio}"),
+                html.H5('Price-Equity Ratio should be less than or equal to 15')
             ],className='card-content-box'),],
             id='graph-3',
         )
@@ -185,13 +185,13 @@ def init_dashboard(server):
         currentRatioPass = True if dfs.currentRatio[dfs.currentRatio.first_valid_index()] >= 2 else False
         fig4 = html.Div([
             html.Div([
-                html.Div([html.H3(children='Current Ratio')]),
+                html.Div([html.H5(children='Current Ratio')]),
                 html.Div(children=html.Span(children=html.Span()),title='Online', 
                     className="dot green" if currentRatioPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H4(f"{formattedCurrentRatio}"),
-                html.H6('Current Ratio should be greater than or equal to 2', className='rationale')
+                html.H2(f"{formattedCurrentRatio}"),
+                html.H5('Current Ratio should be greater than or equal to 2')
             ],className='card-content-box'),],
             id='graph-4',
         )
@@ -206,17 +206,17 @@ def init_dashboard(server):
         marginOfSafetyPass = True if price <= enterpriseValue else False
         fig5 = html.Div([
             html.Div([
-                html.Div([html.H3(children='Price vs Enterprise Value')]),
+                html.Div([html.H5(children='Price vs Enterprise Value')]),
                 html.Div(children=html.Span(children=html.Span()),title='Online', 
                     className="dot green" if marginOfSafetyPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H4(f"Price: {formattedPrice}"),
-                html.H4(f"Adjusted Enterprise Value: {formattedEnterpriseValue} (target)"),
-                html.H6('Price should be less than or equal to Adjusted Enterprise Value*', 
+                html.H2(f"Price: {formattedPrice}"),
+                html.H2(f"Adjusted Enterprise Value: {formattedEnterpriseValue} (target)"),
+                html.H5('Price should be less than or equal to Adjusted Enterprise Value*', 
                     className='rationale'),
                 html.Hr(),
-                html.P("*i.e.: Stock Price x Shares Outstanding = Price <= Adjusted Enterprise Value = 2/3 * Enterprise Value / Shares Outstanding", 
+                html.H6("*i.e.: Stock Price x Shares Outstanding = Price <= Adjusted Enterprise Value = 2/3 * Enterprise Value / Shares Outstanding", 
                     className='note')
             ],className='card-content-box'),
             ],
@@ -234,15 +234,15 @@ def init_dashboard(server):
         formattedRequiredGrowth = "{:,.2f}%".format(requiredGrowth)
         fig6 = html.Div([
             html.Div([
-                html.Div([html.H3(children='Required Growth')]),
+                html.Div([html.H5(children='Required Growth')]),
                 html.Div(children=html.Span(children=html.Span()),title='Online', 
                     className="dot yellow"),
             ],className='card-title-box'),
             html.Div([
-                html.H4(f"{formattedRequiredGrowth} per year"),
-                html.H6("Shows the earnings growth required over a 7-10 year period to rationalize today's stock price", className='rationale'),
+                html.H2(f"{formattedRequiredGrowth} per year"),
+                html.H5("Shows the earnings growth required over a 7-10 year period to rationalize today's stock price"),
                 html.Hr(),
-                html.P("Does this growth seem reasonable?", 
+                html.H6("Does this growth seem reasonable?", 
                     className='note')
             ],className='card-content-box')],
             id='graph-6',
@@ -256,15 +256,16 @@ def init_dashboard(server):
         grahamNumberPass = True if dfs.stockPrice[dfs.stockPrice.first_valid_index()] <= grahamNumber else False 
         fig7 = html.Div([
             html.Div([
-            html.Div([html.H3(children="Graham's Number vs Stock Price")]),
+            html.Div([html.H5(children="Graham's Number vs Stock Price")]),
                 html.Div(children=html.Span(children=html.Span()),title='Online', 
                     className="dot green" if grahamNumberPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H4(f"Graham's Number: {formattedGrahamNumber}"),
-                html.H4(f"Stock price: {formattedPrice}"),
+                html.H2(f"Graham's Number: {formattedGrahamNumber}"),
+                html.H5(f"Stock price: {formattedPrice}"),
                 html.Hr(),
-                html.P("Don't pay more than Graham's Number", className='rationale')
+                html.H6("Don't pay more than Graham's Number", 
+                    className='note')
             ],className='card-content-box')],
             id='graph-7',
         )
