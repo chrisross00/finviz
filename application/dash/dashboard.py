@@ -1,10 +1,6 @@
 """Instantiate a Dash app."""
-from pydoc import classname
 from dash import Dash, dcc, html, Input, Output, State
 from dash_table import DataTable, FormatTemplate
-import numpy as np
-import pandas as pd
-
 from .data import create_dataframe
 from .layout import html_layout
 import plotly.express as px
@@ -51,14 +47,14 @@ def init_dashboard(server):
                 dcc.Graph(id='viz-3', style={'height': '45vh'}, className="card_container three columns"),],
                 className="row flex-display",),
             html.Div([
-                html.Div(children=[html.H5(id='graph-2', children='Market Capitalization')], className="card_container three columns"),
-                html.Div(children=html.H5(id='graph-3', children='PE Ratio'), className="card_container three columns"),
-                html.Div(children=html.H5( id='graph-4', children='Current Ratio'), className="card_container three columns"),], 
+                html.Div(children=[html.H5(id='card-2', children='Market Capitalization')], className="card_container three columns"),
+                html.Div(children=html.H5(id='card-3', children='PE Ratio'), className="card_container three columns"),
+                html.Div(children=html.H5( id='card-4', children='Current Ratio'), className="card_container three columns"),], 
                 className="row flex-display",),
             html.Div([
-                html.Div(children=html.H5( id='graph-5', children='Price vs Enterprise Value'), className="card_container three columns"),
-                html.Div(children=html.H5( id='graph-6', children='Required Growth'), className="card_container three columns"),
-                html.Div(children=html.H5( id='graph-7', children="Graham's Number"), className="card_container three columns"),], 
+                html.Div(children=html.H5( id='card-5', children='Price vs Enterprise Value'), className="card_container three columns"),
+                html.Div(children=html.H5( id='card-6', children='Required Growth'), className="card_container three columns"),
+                html.Div(children=html.H5( id='card-7', children="Graham's Number"), className="card_container three columns"),], 
                 className="row flex-display",),
             html.Br(),
             # 1. Add a figX here 
@@ -70,12 +66,12 @@ def init_dashboard(server):
         Output('viz-1', 'figure'),
         Output('viz-2', 'figure'),
         Output('viz-3', 'figure'),
-        Output('graph-2', 'children'),
-        Output('graph-3', 'children'),
-        Output('graph-4', 'children'),
-        Output('graph-5', 'children'),
-        Output('graph-6', 'children'),
-        Output('graph-7', 'children'),
+        Output('card-2', 'children'),
+        Output('card-3', 'children'),
+        Output('card-4', 'children'),
+        Output('card-5', 'children'),
+        Output('card-6', 'children'),
+        Output('card-7', 'children'),
         Output("database-table", 'data'),
         Output("database-table", 'columns'),
         Input('submit-val', "n_clicks"),
@@ -154,7 +150,7 @@ def init_dashboard(server):
                 html.Hr(),
                 html.H6('*Net Current Asset Value x 1.5, or:  ' + f"{formattedCurrentAssetValue} " + " x 1.5 = " + f"{formattedCurrentAssetValueMult}", className='note')
             ],className='card-content-box'),],
-            id='graph-2',
+            id='card-2',
         )
         # ================================================
         
@@ -172,7 +168,7 @@ def init_dashboard(server):
                 html.H2(f"{formattedPriceEarningsRatio}"),
                 html.H5('Price-Equity Ratio should be less than or equal to 15')
             ],className='card-content-box'),],
-            id='graph-3',
+            id='card-3',
         )
         # ================================================
 
@@ -190,7 +186,7 @@ def init_dashboard(server):
                 html.H2(f"{formattedCurrentRatio}"),
                 html.H5('Current Ratio should be greater than or equal to 2')
             ],className='card-content-box'),],
-            id='graph-4',
+            id='card-4',
         )
         # ================================================
 
@@ -217,7 +213,7 @@ def init_dashboard(server):
                     className='note')
             ],className='card-content-box'),
             ],
-            id='graph-5',
+            id='card-5',
         )
         # ================================================
 
@@ -242,7 +238,7 @@ def init_dashboard(server):
                 html.H6("Does this growth seem reasonable?", 
                     className='note')
             ],className='card-content-box')],
-            id='graph-6',
+            id='card-6',
         )
         # ================================================
 
@@ -264,7 +260,7 @@ def init_dashboard(server):
                 html.H6("Don't pay more than Graham's Number", 
                     className='note')
             ],className='card-content-box')],
-            id='graph-7',
+            id='card-7',
         )
         # ================================================
 
