@@ -21,7 +21,7 @@ def init_dashboard(server):
             "https://fonts.googleapis.come/css?family=Lato"
         ],
         meta_tags=[
-            {"name": "viewport", "content": "width=device-width, initial-scale=1"}
+            {"name": "viewport", "content": "width=device-width, initial-scale=1, maximum-scale=1"}
         ]
     )
 
