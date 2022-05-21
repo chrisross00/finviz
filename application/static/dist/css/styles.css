@@ -151,11 +151,6 @@ header .nav-wrapper a {
     overflow: hidden
 }
 
-@media (max-width: 550px) {
-    .flex-display {
-      display: block !important;
-    }
-}
 nav a {
     display: flex;
     align-items: center;
@@ -407,11 +402,11 @@ header .nav-wrapper {
 .card_container {
     border-radius: 5px;
     background-color: #1f2c56;
-    margin: 1vh;
-    padding: 15px;
+    margin: 10px;
+    padding: 10px;
     position: relative;
     box-shadow: 2px 2px 2px #1f2c56;
-    min-width: 380px;
+    min-width: 270px;
     max-width: 380px;
     text-align: center;
   }

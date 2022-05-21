@@ -82,7 +82,8 @@ def init_dashboard(server):
         State('input-on-submit', 'value'))
 
     def update_table(n_clicks, value):
-        print(f'value clicked = {value}')
+        if value is None:
+            return 
         ticker = str(value.upper())
         dfs = create_dataframe(ticker)
 

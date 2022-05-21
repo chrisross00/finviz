@@ -44,7 +44,7 @@
   .column,
   .columns {
     width: 100%;
-    float: left;
+    /* float: left; */
     box-sizing: border-box;
   }
   
@@ -247,7 +247,6 @@
     margin-bottom: 0.75rem;
     margin-top: 0.75rem;
   }
-  
   p {
     margin-top: 0;
     font-size: 1.3rem;
@@ -558,11 +557,21 @@
     .flex-display {
       display: block !important;
     }
-  
-    .card_container {
-      margin: 0 !important;
-      margin-bottom: 25px !important;
+    
+    .dash-template {
+        text-align: center;
     }
+
+    .card_container {
+        display: inline-block;
+        margin: 0 !important;
+        margin-bottom: 25px !important;
+    }
+
+    .flex-display {
+      display: block !important;
+    }
+  
     .create_container {
       margin: 0 !important;
       margin-bottom: 25px !important;
@@ -577,10 +586,6 @@
       display: flex;
     }
   
-    #corona-image {
-      margin-bottom: 0px !important;
-      height: 45px !important;
-    }
     #refresh-data {
       margin-top: 0px !important;
       padding: 0 10px !important;
@@ -598,9 +603,30 @@
     #title1 {
       margin-bottom: 10px;
     }
-  
+    
+    
+    h1 {
+      font-size: 4rem;
+      line-height: 1.2;
+      letter-spacing: -0.1rem;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 3.1rem;
+      line-height: 1.25;
+      letter-spacing: -0.1rem;
+      margin-bottom: 1.8rem;
+      margin-top: 1.8rem;
+    }
     h3 {
       font-size: 2.5rem;
+    }
+    h4 {
+      font-size: 2.2rem;
+      line-height: 1.35;
+      letter-spacing: -0.08rem;
+      margin-bottom: 1.2rem;
+      margin-top: 1.2rem;
     }
     h5 {
       font-size: 2rem;
