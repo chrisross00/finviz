@@ -1,6 +1,5 @@
 """Instantiate a Dash app."""
 from pydoc import classname
-from turtle import color
 from dash import Dash, dcc, html, Input, Output, State
 from dash_table import DataTable, FormatTemplate
 import numpy as np
@@ -22,12 +21,6 @@ def init_dashboard(server):
             "https://fonts.googleapis.come/css?family=Lato"
         ],
     )
-
-    colors = {
-        'bad-background': '#ffbaba',
-        'good-background': '#d9ffe3',
-        'text': '#7FDBFF'
-    }
 
     # Load Dataframe
     df = create_dataframe() #Financial API Call
