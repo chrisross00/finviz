@@ -182,7 +182,8 @@ nav a i {
     border: 0;
     border-radius: 4px;
     box-shadow: 0 0 4px #cdd3e2;
-    font-family: 'Lato', sans-serif
+    font-family: 'Lato', sans-serif;
+    color: black;
 }
 
 .dash-spreadsheet-container * {

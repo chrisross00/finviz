@@ -283,6 +283,6 @@ def create_data_table(df):
         sort_action="native",
         sort_mode="native",
         page_size=300,
-        style_table={'overflowX': 'scroll'},
+        style_table={'overflowX': 'scroll', 'whiteSpace': 'normal','height': 'auto',},
     )
     return table
