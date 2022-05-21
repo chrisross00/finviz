@@ -24,10 +24,10 @@ def create_dataframe(ticker=''):
     
     # Uncomment for API
     incomeStatement = fmpsdk.income_statement(apikey=apikey, symbol=symbol, period='quarter')
-    balanceSheet = fmpsdk.balance_sheet_statement(apikey=apikey, symbol=symbol)
-    keyMetrics = fmpsdk.key_metrics_ttm(apikey=apikey, symbol=symbol)
+    balanceSheet = fmpsdk.balance_sheet_statement(apikey=apikey, symbol=symbol, period='quarter')
+    keyMetrics = fmpsdk.key_metrics(apikey=apikey, symbol=symbol, period='quarter')
     quote = fmpsdk.quote(apikey=apikey, symbol=symbol)
-    enterpriseValues = fmpsdk.enterprise_values(apikey=apikey, symbol=symbol)
+    enterpriseValues = fmpsdk.enterprise_values(apikey=apikey, symbol=symbol, period='quarter')
 
     list = (
         incomeStatement,
@@ -40,7 +40,7 @@ def create_dataframe(ticker=''):
         for j in i:
             preDf.append(j)
 
-    # preDf = pd.read_csv('data/df') # Comment this for offline mode OFF
+    # # preDf = pd.read_csv('data/df') # Comment this for offline mode OFF
     # # preDF = pd.read_csv('data/AAPL') if ticker == 'AAPL' else pd.read_csv('data/TSLA')
     df = pd.DataFrame(preDf)
     df.fillna('')

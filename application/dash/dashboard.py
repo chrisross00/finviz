@@ -40,75 +40,36 @@ def init_dashboard(server):
         children=[
             html.Div([
                 html.Div([ # convert this to a form
-                html.H2("Enter a company's stock ticker below:"),
+                html.H3("Enter a company's stock ticker below:"),
                 html.Div([
                     html.Div(dcc.Input(id='input-on-submit', type='text')),
-                    html.Button('Submit', id='submit-val', n_clicks=0, className='button-1')
-                    ])
+                    html.Button('Submit', id='submit-val', n_clicks=0, className='button-1'),],
+                    )
                 ], 
                 className="card_container one column")
             ], 
             className="row flex-display",),
             html.Div([
-                dcc.Graph(
-                    id='viz-1',
-                    style={'height': '45vh'},
-                    className="card_container three columns"),
-                dcc.Graph(
-                    id='viz-2',
-                    style={'height': '45vh'},
-                    className="card_container three columns"),
-                dcc.Graph(
-                    id='viz-3',
-                    style={'height': '45vh'},
-                    className="card_container three columns")
-            ],
-            className="row flex-display"),
+                dcc.Graph(id='viz-1', style={'height': '45vh'}, className="card_container three columns"),
+                dcc.Graph(id='viz-2', style={'height': '45vh'}, className="card_container three columns"),
+                dcc.Graph(id='viz-3', style={'height': '45vh'}, className="card_container three columns"),],
+                className="row flex-display",),
             html.Div([
-                html.Div(
-                    children=[
-                        html.H3(
-                            id='graph-2',
-                            children='Market Capitalization')
-                        ], 
-                        className="card_container three columns"),
-                html.Div(
-                    children=html.H3(
-                        id='graph-3',
-                        children='PE Ratio'),
-                        className="card_container three columns"),
-                html.Div(
-                    children=html.H3(
-                        id='graph-4',
-                        children='Current Ratio'),
-                        className="card_container three columns"),], 
-                className="row flex-display",
-                id="row-1"),
+                html.Div(children=[html.H3(id='graph-2', children='Market Capitalization')], className="card_container three columns"),
+                html.Div(children=html.H3(id='graph-3', children='PE Ratio'), className="card_container three columns"),
+                html.Div(children=html.H3( id='graph-4', children='Current Ratio'), className="card_container three columns"),], 
+                className="row flex-display",),
             html.Div([
-                html.Div(
-                    children=html.H3(
-                        id='graph-5',
-                        children='Price vs Enterprise Value'),
-                        className="card_container three columns"),
-                html.Div(
-                    children=html.H3(
-                        id='graph-6',
-                        children='Required Growth'),
-                        className="card_container three columns"),
-                html.Div(
-                    children=html.H3(
-                        id='graph-7',
-                        children="Graham's Number"),
-                        className="card_container three columns")], 
-                className="row flex-display",
-                id="row-2"),
+                html.Div(children=html.H3( id='graph-5', children='Price vs Enterprise Value'), className="card_container three columns"),
+                html.Div(children=html.H3( id='graph-6', children='Required Growth'), className="card_container three columns"),
+                html.Div(children=html.H3( id='graph-7', children="Graham's Number"), className="card_container three columns"),], 
+                className="row flex-display",),
             html.Br(),
             # 1. Add a figX here 
             create_data_table(df)
         ],
         id="dash-container",
     ) 
-    9,355,000,000
     @dash_app.callback(
         Output('viz-1', 'figure'),
         Output('viz-2', 'figure'),
@@ -137,7 +98,7 @@ def init_dashboard(server):
         viz1 = px.line(dfs, 
                 x="date", 
                 y="revenue", 
-                title=f"Annual Revenue for {ticker}" if ticker is not None else f"revenuePerShare",
+                title=f"Quarterly Revenue for {ticker}" if ticker is not None else f"revenuePerShare",
                 hover_name="symbol",
                 markers=True
         )
@@ -152,7 +113,7 @@ def init_dashboard(server):
         viz2 = px.line(dfs, 
                 x="date", 
                 y="netIncome", 
-                title=f"Net Income for {ticker}" if ticker is not None else f"netIncome",
+                title=f"Quarterly Net Income for {ticker}" if ticker is not None else f"netIncome",
                 hover_name="symbol",
                 markers=True
         )
@@ -167,7 +128,7 @@ def init_dashboard(server):
         viz3 = px.line(dfs, 
                 x="date", 
                 y="stockPrice", 
-                title=f"Stock Price for {ticker}" if ticker is not None else f"stockPrice",
+                title=f"Quarterly Stock Price for {ticker}" if ticker is not None else f"stockPrice",
                 hover_name="symbol",
                 markers=True
         )
@@ -179,10 +140,10 @@ def init_dashboard(server):
         
         # Graph 2 - card
         # ================================================
-        formattedMarketCap = "${:,.2f}".format(dfs.marketCapTTM[dfs.marketCapTTM.first_valid_index()])
+        formattedMarketCap = "${:,.2f}".format(dfs.marketCap[dfs.marketCap.first_valid_index()])
         formattedCurrentAssetValue = "${:,.2f}".format(dfs.totalCurrentAssets[dfs.totalCurrentAssets.first_valid_index()])
         formattedCurrentAssetValueMult = "${:,.2f}".format(dfs.totalCurrentAssets[dfs.totalCurrentAssets.first_valid_index()]*1.5)
-        marketCapCurrentAssetPass = True if dfs.marketCapTTM[dfs.marketCapTTM.first_valid_index()] >= dfs.totalCurrentAssets[dfs.totalCurrentAssets.first_valid_index()]*1.5 else False
+        marketCapCurrentAssetPass = True if dfs.marketCap[dfs.marketCap.first_valid_index()] >= dfs.totalCurrentAssets[dfs.totalCurrentAssets.first_valid_index()]*1.5 else False
         formattedDiff = "${:,.2f}".format(dfs.totalCurrentAssets[dfs.totalCurrentAssets.first_valid_index()]*1.5)
         fig2 = html.Div([
             html.Div([
@@ -191,8 +152,9 @@ def init_dashboard(server):
                     className="dot green" if marketCapCurrentAssetPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H2(f"{formattedMarketCap}"),
+                html.H4(f"{formattedMarketCap}"),
                 html.H6('Market Cap should be less than or equal to  ' + f"{formattedCurrentAssetValueMult}*", className='rationale'), 
+                html.Hr(),
                 html.P('*Net Current Asset Value x 1.5, or:  ' + f"{formattedCurrentAssetValue} " + " x 1.5 = " + f"{formattedCurrentAssetValueMult}", className='note')
             ],className='card-content-box'),],
             id='graph-2',
@@ -201,8 +163,8 @@ def init_dashboard(server):
         
         # Graph 3 - card
         # ================================================
-        formattedPriceEarningsRatio = "{:,.2f}".format(dfs.peRatioTTM[dfs.peRatioTTM.first_valid_index()])
-        priceEarningsRatioPass = True if dfs.peRatioTTM[dfs.peRatioTTM.first_valid_index()] <= 15 else False
+        formattedPriceEarningsRatio = "{:,.2f}".format(dfs.peRatio[dfs.peRatio.first_valid_index()])
+        priceEarningsRatioPass = True if dfs.peRatio[dfs.peRatio.first_valid_index()] <= 15 else False
         fig3 = html.Div([
             html.Div([
                 html.Div([html.H3(children='Price Equity Ratio')]),
@@ -210,7 +172,7 @@ def init_dashboard(server):
                     className="dot green" if priceEarningsRatioPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H2(f"{formattedPriceEarningsRatio}"),
+                html.H4(f"{formattedPriceEarningsRatio}"),
                 html.H6('Price-Equity Ratio should be less than or equal to 15', className='rationale')
             ],className='card-content-box'),],
             id='graph-3',
@@ -219,8 +181,8 @@ def init_dashboard(server):
 
         # Graph 4 - card
         # ================================================
-        formattedCurrentRatio = "{:,.2f}".format(dfs.currentRatioTTM[dfs.currentRatioTTM.first_valid_index()])
-        currentRatioPass = True if dfs.currentRatioTTM[dfs.currentRatioTTM.first_valid_index()] >= 2 else False
+        formattedCurrentRatio = "{:,.2f}".format(dfs.currentRatio[dfs.currentRatio.first_valid_index()])
+        currentRatioPass = True if dfs.currentRatio[dfs.currentRatio.first_valid_index()] >= 2 else False
         fig4 = html.Div([
             html.Div([
                 html.Div([html.H3(children='Current Ratio')]),
@@ -228,7 +190,7 @@ def init_dashboard(server):
                     className="dot green" if currentRatioPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H2(f"{formattedCurrentRatio}"),
+                html.H4(f"{formattedCurrentRatio}"),
                 html.H6('Current Ratio should be greater than or equal to 2', className='rationale')
             ],className='card-content-box'),],
             id='graph-4',
@@ -249,10 +211,11 @@ def init_dashboard(server):
                     className="dot green" if marginOfSafetyPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H2(f"Price: {formattedPrice}"),
-                html.H2(f"Adjusted Enterprise Value: {formattedEnterpriseValue} (target)"),
-                html.P('Price should be less than or equal to Adjusted Enterprise Value*', 
+                html.H4(f"Price: {formattedPrice}"),
+                html.H4(f"Adjusted Enterprise Value: {formattedEnterpriseValue} (target)"),
+                html.H6('Price should be less than or equal to Adjusted Enterprise Value*', 
                     className='rationale'),
+                html.Hr(),
                 html.P("*i.e.: Stock Price x Shares Outstanding = Price <= Adjusted Enterprise Value = 2/3 * Enterprise Value / Shares Outstanding", 
                     className='note')
             ],className='card-content-box'),
@@ -273,11 +236,12 @@ def init_dashboard(server):
             html.Div([
                 html.Div([html.H3(children='Required Growth')]),
                 html.Div(children=html.Span(children=html.Span()),title='Online', 
-                    className="dot green" if marginOfSafetyPass == True else 'dot red'),
+                    className="dot yellow"),
             ],className='card-title-box'),
             html.Div([
-                html.H2(f"{formattedRequiredGrowth} per year"),
+                html.H4(f"{formattedRequiredGrowth} per year"),
                 html.H6("Shows the earnings growth required over a 7-10 year period to rationalize today's stock price", className='rationale'),
+                html.Hr(),
                 html.P("Does this growth seem reasonable?", 
                     className='note')
             ],className='card-content-box')],
@@ -287,7 +251,7 @@ def init_dashboard(server):
 
         # Graph 7 - card
         # ================================================
-        grahamNumber = dfs.grahamNumberTTM[dfs.grahamNumberTTM.first_valid_index()]
+        grahamNumber = dfs.grahamNumber[dfs.grahamNumber.first_valid_index()]
         formattedGrahamNumber = "{:,.2f}".format(grahamNumber)
         grahamNumberPass = True if dfs.stockPrice[dfs.stockPrice.first_valid_index()] <= grahamNumber else False 
         fig7 = html.Div([
@@ -297,34 +261,14 @@ def init_dashboard(server):
                     className="dot green" if grahamNumberPass == True else 'dot red'),
             ],className='card-title-box'),
             html.Div([
-                html.H2(f"Graham's Number: {formattedGrahamNumber}"),
-                html.H2(f"Stock price: {formattedPrice}"),
+                html.H4(f"Graham's Number: {formattedGrahamNumber}"),
+                html.H4(f"Stock price: {formattedPrice}"),
+                html.Hr(),
                 html.P("Don't pay more than Graham's Number", className='rationale')
             ],className='card-content-box')],
             id='graph-7',
         )
         # ================================================
-
-
-
-
-
-        # # Graph N - card
-        # # ================================================
-        # formattedKPI = "{:,.2f}".format(dfs.currentRatioTTM[dfs.currentRatioTTM.first_valid_index()])
-        # passFailKPI = True if dfs.currentRatioTTM[dfs.currentRatioTTM.first_valid_index()] >= 2 else False
-        # figN = html.Div([
-        #         html.Div(children=html.H3(children='Title')),
-        #         html.P(f"{formattedKPI}"),
-        #         html.P('PE Ratio should be greater than or equal to 2', className='rationale')],
-        #     id='graph-N',
-        #     className='pass' if passFailKPI == True else 'fail'
-        # )
-        # # ================================================
-
-
-        # 2. Add figX and figX.update_layout()
-        # 3. Add figX to the return
 
         columns=[{"name": i, "id":i} for i in dfs.columns]
         data=dfs.to_dict("records")

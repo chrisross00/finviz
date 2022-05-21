@@ -420,7 +420,8 @@ header .nav-wrapper {
 
   .card_container.one.column {
       width:100%;
-      max-width: 1200px;
+      max-width: 780px;
+      text-align: left;
   }
   
   .card-title-box {
@@ -523,12 +524,9 @@ header .nav-wrapper {
 
 .note {
     font-size: 12;
-    font-style:italic;
-    padding: 1vh;
 }
 .rationale {
     font-size: 15;
-    padding: 1vh;
 }
 
 .fail {
