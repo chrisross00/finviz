@@ -8,8 +8,8 @@ def home():
     """Landing page."""
     return render_template(
         "index.jinja2",
-        title="FinViz420, a Plotly Dash App within Flask",
-        description="a data visualizer for assisting with financial assessments",
+        title="FinViz420",
+        description="aims to assist with stock selection by providing tooling fundamental and technical analysis.",
         template="home-template",
         body="This homepage is served with Flask."
     )
