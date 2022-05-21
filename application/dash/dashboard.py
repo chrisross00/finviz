@@ -20,6 +20,9 @@ def init_dashboard(server):
             "/static/dist/css/styles.css",
             "https://fonts.googleapis.come/css?family=Lato"
         ],
+        meta_tags=[
+            {"name": "viewport", "content": "width=device-width, initial-scale=1"}
+        ]
     )
 
     # Load Dataframe
