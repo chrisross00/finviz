@@ -32,7 +32,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-./finviz-env/
+finviz-env/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
