@@ -146,8 +146,7 @@ def init_dashboard(server):
             html.Div([
                 html.H2(f"{formattedMarketCap}"),
                 html.H5('Market Cap should be less than or equal to  ' + f"{formattedCurrentAssetValueMult}*"), 
-                html.Hr(),
-                html.H6('*Net Current Asset Value x 1.5, or:  ' + f"{formattedCurrentAssetValue} " + " x 1.5 = " + f"{formattedCurrentAssetValueMult}", className='note')
+                html.H6(children=['*Net Current Asset Value x 1.5', html.Br(), + f"i.e.: {formattedCurrentAssetValue} " + " x 1.5 = " + f"{formattedCurrentAssetValueMult}"], className='note')
             ],className='card-content-box'),],
             id='card-1',
         )
@@ -204,10 +203,8 @@ def init_dashboard(server):
             html.Div([
                 html.H2(f"Price: {formattedPrice}"),
                 html.H2(f"Adjusted Enterprise Value: {formattedEnterpriseValue} (target)"),
-                html.H5('Price should be less than or equal to Adjusted Enterprise Value*', 
-                    className='rationale'),
-                html.Hr(),
-                html.H6("*i.e.: Stock Price x Shares Outstanding = Price <= Adjusted Enterprise Value = 2/3 * Enterprise Value / Shares Outstanding", 
+                html.H5('Price should be less than or equal to Adjusted Enterprise Value*'),
+                html.H6(children=["*i.e.: Price <= Adjusted Enterprise Value;", html.Br(), "Price = Stock Price x Shares Outstanding;", html.Br(),"Adjusted Enterprise Value = 2/3 * Enterprise Value / Shares Outstanding;",],
                     className='note')
             ],className='card-content-box'),
             ],
@@ -231,7 +228,6 @@ def init_dashboard(server):
             html.Div([
                 html.H2(f"{formattedRequiredGrowth} per year"),
                 html.H5("Shows the earnings growth required over a 7-10 year period to rationalize today's stock price"),
-                html.Hr(),
                 html.H6("Does this growth seem reasonable?", 
                     className='note')
             ],className='card-content-box')],
@@ -253,7 +249,6 @@ def init_dashboard(server):
             html.Div([
                 html.H2(f"Graham's Number: {formattedGrahamNumber}"),
                 html.H5(f"Stock price: {formattedPrice}"),
-                html.Hr(),
                 html.H6("Don't pay more than Graham's Number", 
                     className='note')
             ],className='card-content-box')],

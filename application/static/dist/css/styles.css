@@ -516,7 +516,11 @@ header .nav-wrapper {
   }
 
 .note {
-    font-size: 1.3rem
+    bottom: 0;
+    width: 80%;
+    font-size: 1rem;
+    border-top: 0.1rem solid white;
+    padding-top: 1rem;
 }
 
 .rationale {
