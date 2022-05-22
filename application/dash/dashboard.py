@@ -146,7 +146,7 @@ def init_dashboard(server):
             html.Div([
                 html.H2(f"{formattedMarketCap}"),
                 html.H5('Market Cap should be less than or equal to  ' + f"{formattedCurrentAssetValueMult}*"), 
-                html.H6(children=['*Net Current Asset Value x 1.5', html.Br(), + f"i.e.: {formattedCurrentAssetValue} " + " x 1.5 = " + f"{formattedCurrentAssetValueMult}"], className='note')
+                html.H6(children=['*Net Current Asset Value x 1.5', html.Br(), f"i.e.: {formattedCurrentAssetValue} x 1.5 = {formattedCurrentAssetValueMult}"], className='note')
             ],className='card-content-box'),],
             id='card-1',
         )
