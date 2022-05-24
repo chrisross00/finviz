@@ -74,7 +74,7 @@
       width: 13.3333333333%;
     }
     .three.columns {
-      width: 22%;
+      width: 30%;
     }
     .four.columns {
       width: 30.6666666667%;
@@ -527,7 +527,7 @@
   }
   
   /* Larger than phablet (also point when grid becomes active), screen larger than 550px */
-  @media (min-width: 550px) {
+  /* @media (min-width: 550px) {
     .one.column,
     .one.columns {
       width: 8%;
@@ -536,7 +536,7 @@
       width: 16.25%;
     }
     .three.columns {
-      width: 33%;
+      width: 30%;
     }
     .four.columns {
       width: calc(100% / 3);
@@ -550,7 +550,7 @@
     .seven.columns {
       width: calc(100% * 7 / 12);
     }
-  }
+  } */
   
   /* Larger than tablet, for screens smaller than 768px */
   @media (max-width: 550px) {
@@ -670,7 +670,7 @@
   width:14px
  }
  .dot.green {
-  background-color:#6eff7a;
+  background-color:#59e264;
  }
  .dot.green span,
  .dot.green span:after {
@@ -686,3 +686,7 @@
  .dot.yellow {
   background-color:#ffc94b;
  }
+
+.tab-content {
+  padding-top: 10px;
+}

@@ -3,6 +3,12 @@
 ## Priority
 * Set up a new app using the factory pattern so it doesn't suck ass when you're further along
 
+
+* Styling
+  * Different cards should be different heights without affecting one another; 
+  * Abbreviate anything over 1m; done
+  * how to make there be an "active show" set when the page is refreshed; done - used persistence
+
 ## Notes
 * *Actviate Virtual Environtment*
   * cli: C**:\Users\chris\Documents\Projects\investviz> `finviz\Scripts\activate`
@@ -29,8 +35,14 @@
   * Tooltips 
   * Live quotes etc
     * idea of context: a sticky or persistent set of divs could be interesting to play with
+  * Error handling/banners/messages
+  * Card redesign for definitions and calculations https://miro.com/app/board/uXjVOylSwJQ=/
+    * Should there be a jinja template for definitions? And a definitions library?
+    * If cards can have a basic structure that relies on passing KFIs and definitions to it, that can be abstracted into a method that builds cards
+    * Also, for the love of christ, abbreviate millions and billions
 * News
   * Is there an easy way to pull news back?
+  
 
 ## Done!
 

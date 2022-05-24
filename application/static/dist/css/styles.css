@@ -344,6 +344,7 @@ input {
     margin: 8px 0;
     box-sizing: border-box;
     text-transform: uppercase;
+    font-size: 1.75rem;
 }
 /* 
 <!-- HTML !-->
@@ -409,6 +410,7 @@ header .nav-wrapper {
     min-width: 270px;
     max-width: 380px;
     text-align: center;
+    /* color: red; */
   }
 
   .card_container.one.column {
