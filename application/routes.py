@@ -9,7 +9,7 @@ def home():
     return render_template(
         "index.jinja2",
         title="FinViz420",
-        description="aims to assist with stock selection by providing tools for fundamental and technical security analysis",
+        description="aims to assist with stock selection by providing tools for fundamental and technical security analysis that is thorough and unambiguous.",
         template="home-template",
         body="This homepage is served with Flask."
     )
