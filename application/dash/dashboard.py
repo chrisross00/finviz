@@ -119,7 +119,7 @@ def init_dashboard(server):
         children=[
             html.Div([
                 html.Div([ # convert this to a form
-                html.H3("Enter a company's stock ticker below:"),
+                html.H3("Enter a company's stock ticker below:", style={'color':'white'}),
                 html.Div([
                     html.Div(dcc.Input(id='input-on-submit', type='text', n_submit=0)),
                     html.Button('Submit', id='submit-val', n_clicks=0, className='button-1'),],
