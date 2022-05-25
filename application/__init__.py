@@ -1,10 +1,14 @@
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_redis import FlaskRedis
-from flask_assets import Environment
 
-db = SQLAlchemy()
-r = FlaskRedis()
+from flask_assets import Environment
+from flask_migrate import Migrate
+from blueprints import kfi
+from .models.base import db, migrate, r
+
+BLUEPRINTS = [kfi]
 
 def init_app():
     """"Initialize the core application."""
@@ -12,7 +16,9 @@ def init_app():
     app.config.from_object('config.Config')
 
     db.init_app(app)
+    db.app = app
     r.init_app(app)
+    migrate.init_app(app, db)
 
     assets = Environment()
     assets.init_app(app)
@@ -23,8 +29,8 @@ def init_app():
         from .assets import compile_static_assets
 
         # Register Blueprints
-        # app.register_blueprint(auth.auth_bp)
-        # app.register_blueprint(admin.admin_bp)
+        for blueprint in BLUEPRINTS:
+            app.register_blueprint(blueprint)
 
         # Import Dash App
         from .dash.dashboard import init_dashboard

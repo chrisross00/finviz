@@ -79,7 +79,7 @@ def create_card_new(card_data):
             dbc.Tab(tab1_content, label="SUMMARY", tab_style={'border':'none'}),
             dbc.Tab(tab2_content, label="DEFINITIONS", tab_style={'border':'none'}),
             dbc.Tab(tab3_content, label="CALCULATIONS", tab_style={'border':'none'}),
-        ], id='tabs2', style={'position':'absolute', 'bottom':'0', 'font-size':'1.5rem', 'border-bottom':'none'},persistence=True
+        ], id='tabs2', style={'position':'absolute', 'bottom':'0', 'font-size':'1.5rem', 'border-bottom':'none'},persistence=True,
     )
 
     card = dbc.Card(

@@ -34,6 +34,8 @@ share/python-wheels/
 MANIFEST
 finviz-env/
 roadmap.md
+*.db
+/migrations/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
